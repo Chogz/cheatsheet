@@ -10,11 +10,11 @@
 -- git clone https://github.com/letsencrypt/letsencrypt
 -- cd letsencrypt
 #When renewing a single domain do the below
--- ./letsencrypt-auto certonly --standalone -d mail.angani.co
-#When renewing multiple domains ( e.g. jevitech which has multiple domains inside the same server )
--- ./letsencrypt-auto certonly --standalone -d zimbra.jevitech.co.ke -d mail.amicacs.co.ke
+-- ./letsencrypt-auto certonly --standalone -d mail.abc.com
+#When renewing multiple domains ( e.g. xycv which has multiple domains inside the same server )
+-- ./letsencrypt-auto certonly --standalone -d zimbra.allan.co.ke -d mail.techabc.co.ke
 
--- cd /etc/letsencrypt/live/mail.angani.co
+-- cd /etc/letsencrypt/live/mail.abc.com
 -- vi chain.pem
 
 #At the very top of the file, paste the below certificate
