@@ -1,0 +1,16 @@
+/ppp profile add name=L2TP-IPSec local-address=172.16.150.1 dns-server=8.8.8.8
+
+/interface l2tp-server server set enabled=yes default-profile=ipsec_vpn authentication=mschap1,mschap2
+
+/ip ipsec policy set [ find default=yes ] src-address=0.0.0.0/0 dst-address=0.0.0.0/0 protocol=all proposal=default template=yes 
+
+/ip ipsec peer add exchange-mode=main passive=yes name=l2tpserver
+
+
+/ip ipsec identity add generate-policy=port-override auth-method=pre-shared-key secret="Io'Gh-ieZ2li" peer=l2tpserver
+
+/ip ipsec proposal set default auth-algorithms=sha1 enc-algorithms=3des pfs-group=modp1024
+
+/ip firewall filter add chain=input action=accept protocol=udp port=1701,500,4500
+
+/ip firewall filter add chain=input action=accept protocol=ipsec-espprof	
