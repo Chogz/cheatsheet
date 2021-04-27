@@ -1,0 +1,37 @@
+This is a guide on how to assign static IPs to linux server running netplan
+
+The networking configuration file is located at /etc/netplan/01-netcfg.yaml(The last file varies depending on the server)
+
+To assign a static IP address to ens3 interface, edit the file as follows:
+
+Set DHCP to dhcp4: no.
+
+Specify the static IP address 192.168.121.199/24. Under addresses: you can add one or more IPv4 or IPv6 IP addresses that will be assigned to the network interface.
+
+Specify the gateway gateway4: 192.168.121.1
+
+Under nameservers, set the IP addresses of the nameservers addresses: [8.8.8.8, 1.1.1.1]
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens3:
+      dhcp4: no
+      addresses:
+        - 192.168.121.199/24
+      gateway4: 192.168.121.1
+      nameservers:
+          addresses: [8.8.8.8, 1.1.1.1]
+          
+          
+When editing Yaml files, make sure you follow the YAML code indent standards. If there are syntax errors in the configuration, the changes will not be applied.
+
+
+Save and apply the configurations run the command
+ 
+$ sudo netplan apply
+ 
+To verify the changes use the command;
+
+$ ip addr show dev ens3
