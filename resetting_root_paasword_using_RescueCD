@@ -22,6 +22,10 @@ Type
 
 -- umount /mnt/
 
+#Exit to the rescue disk's fs
+
+-- exit or ctrl+D
+
 #Shutdown the server
 
 -- shutdown now
