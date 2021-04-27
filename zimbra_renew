@@ -50,12 +50,12 @@ Ob8VZRzI9neWagqNdwvYkQsEjgfbKbYK7p2CNTUQ
 
 #Swich to Zimbra USer
 -- cd /opt/zimbra/ssl/letsencrypt/
--- /opt/zimbra/bin/zmcertmgr verifycrt comm privkey.pem cert.pem chain.pem
+-- /opt/zimbra/bin/zmcertmgr verifycrt comm privkey.pem cert.pem fullchain.pem
 #Create Backup as root
 -- cp -a /opt/zimbra/ssl/zimbra /opt/zimbra/ssl/zimbra.$(date "+%Y%m%d")
 -- cp /opt/zimbra/ssl/letsencrypt/privkey.pem /opt/zimbra/ssl/zimbra/commercial/commercial.key
 #Switch to Zimbra user
 -- cd /opt/zimbra/ssl/letsencrypt/
--- /opt/zimbra/bin/zmcertmgr deploycrt comm cert.pem chain.pem
+-- /opt/zimbra/bin/zmcertmgr deploycrt comm cert.pem fullchain.pem
 -- zmcontrol restart
 -- zmproxyctl restart
