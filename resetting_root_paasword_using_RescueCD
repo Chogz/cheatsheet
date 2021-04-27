@@ -1,0 +1,32 @@
+#Changing root password
+
+#Insert the rescue
+
+Type
+
+-- lvdisplay (locate the root disk)
+
+-- mount /dev/cl/root /mnt/
+
+-- chroot /mnt/ /bin/bash
+
+#Navigate to the home folder
+
+-- cd
+
+#change the root password
+
+-- passwd root
+
+#Unmount the partiton i.e 
+
+-- umount /mnt/
+
+#Shutdown the server
+
+-- shutdown now
+
+#Eject the rescue disk
+
+#Finally boot the server normally
+
