@@ -1,0 +1,58 @@
+#Go to the VM (find it on Cloudstack/xen)
+--Add stoarge and attach the disk to the VM
+-- SSH into the server;
+1. First run the command
+
+	--df -hT =>helps view disk information
+
+2.To view the created disk run
+
+	-- fdisk -l
+
+After viewing the volume path then proceed to extend.
+
+	--fdisk /dev/xvdb (will depend on the filesystem format and also the number of added storage)
+
+Then select;
+
+-- n for a new partition
+
+-- p for primary
+
+-- Then press enter for the next default values
+
+Then use -- t for type 
+
+--8e for Linux LVM
+
+--p to print volumes already created
+
+--w to write the changes
+
+
+3. To view volumes
+
+	-- vgs
+
+4. Create a physical volume
+
+	-- pvcreate /dev/xvdb1
+
+5. Extend the volume group
+
+	--vgextend cl /dev/xvdb1
+
+6. Extend the logical volume group (LVM)
+
+	-- lvextend /dev/cl/root -l +100%FREE
+
+7. Grow the file system to make use of the new storage.
+
+	-- xfs_growfs /dev/cl/root =>> Applies to CentOS distros
+
+	-- resize2fs /dev/cl/root ==> For debian and Ubuntu
+
+8. To view the changes if they have taken effect 
+
+	--df -h
+ 
